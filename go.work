@@ -3,3 +3,5 @@ use ./types
 use ./testing-example
 use ./concurrency
 use ./h-reservation
+use ./simple-rest
+use ./fiber
