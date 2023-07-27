@@ -11,10 +11,8 @@ import (
 )
 
 type DbInstance struct {
-	Db *gorm.DB
+	*gorm.DB
 }
-
-var DB DbInstance
 
 func SetupDB() {
 	env := config.GetEnv().DBConfig
@@ -27,15 +25,11 @@ func SetupDB() {
 		env.SSLMode,
 	)
 
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{
+	_, err := gorm.Open(postgres.Open(dsn), &gorm.Config{
 		Logger: logger.Default.LogMode(logger.Info),
 	})
 
 	if err != nil {
 		log.Fatal("Could not connect to database.")
-	}
-
-	DB = DbInstance{
-		Db: db,
 	}
 }

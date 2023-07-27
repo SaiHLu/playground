@@ -52,3 +52,5 @@ E.g => main_test.go
    ```
 
 - Channels in go will be blocked if it is fulled
+
+Ref: https://github.dev/percoguru/tutorial-notes-api-go-fiber
