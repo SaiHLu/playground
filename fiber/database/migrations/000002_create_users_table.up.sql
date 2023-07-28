@@ -1,9 +1,9 @@
-CREATE TABLE IF NOT EXISTS users (
-    id  uuid DEFAULT uuid_generate_v4(),
-    username    varchar(50) NOT NULL,
-    email   varchar(300) UNIQUE NOT NULL,
+CREATE TABLE IF NOT EXISTS "users" (
+    "id"  UUID NOT NULL DEFAULT (uuid_generate_v4()),
+    "username"    VARCHAR NOT NULL,
+    "email"   VARCHAR NOT NULL UNIQUE,
+    "password"  VARCHAR NOT NULL,
 
-
-    PRIMARY KEY(id)
+    CONSTRAINT  "users_pkey"    PRIMARY KEY("id")
 )
 
