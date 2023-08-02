@@ -5,3 +5,5 @@ use ./concurrency
 use ./h-reservation
 use ./simple-rest
 use ./fiber
+use ./concurrency-practice/mutex
+use ./concurrency-practice/mutex-balance
