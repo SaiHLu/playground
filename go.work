@@ -5,3 +5,6 @@ use ./concurrency
 use ./h-reservation
 use ./simple-rest
 use ./fiber
+use ./concurrency-practice/waitGroup
+use ./concurrency-practice/waitGroup-challenge
+use ./concurrency-practice/mutex
