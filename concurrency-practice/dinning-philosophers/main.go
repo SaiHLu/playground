@@ -7,6 +7,8 @@ import (
 
 var philosophers = []string{"Plato", "Socrates", "Aristole", "Pascal", "Locke"}
 var wg sync.WaitGroup
+var order sync.Mutex
+var orderFinished int
 
 func dinningProblem(philosopher string, leftFork, rightFork *sync.Mutex) {
 	defer wg.Done()
@@ -32,6 +34,9 @@ func dinningProblem(philosopher string, leftFork, rightFork *sync.Mutex) {
 		fmt.Printf("\t%s put down the fork on his right side. \n", philosopher)
 	}
 
+	order.Lock()
+	orderFinished++
+	order.Unlock()
 	fmt.Println(philosopher, " is satisfied.")
 }
 
@@ -51,5 +56,5 @@ func main() {
 
 	wg.Wait()
 
-	fmt.Println("The table is empty.")
+	fmt.Println("The table is empty.", orderFinished)
 }

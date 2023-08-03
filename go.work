@@ -1,12 +1,26 @@
 use ./modules
+
 use ./types
+
 use ./testing-example
+
 use ./concurrency
+
 use ./h-reservation
+
 use ./simple-rest
+
 use ./fiber
+
 use ./concurrency-practice/waitGroup
+
 use ./concurrency-practice/waitGroup-challenge
+
 use ./concurrency-practice/mutex
+
 use ./concurrency-practice/mutex-balance
-use ./concurrency-practice/dinning-philosophers
+
+use (
+	./concurrency-practice/dinning-philosophers
+	./concurrency-practice/simple-channel
+)
