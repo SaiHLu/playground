@@ -8,3 +8,4 @@ use ./fiber
 use ./concurrency-practice/waitGroup
 use ./concurrency-practice/waitGroup-challenge
 use ./concurrency-practice/mutex
+use ./concurrency-practice/mutex-balance
