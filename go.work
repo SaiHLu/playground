@@ -23,4 +23,5 @@ use ./concurrency-practice/mutex-balance
 use (
 	./concurrency-practice/dinning-philosophers
 	./concurrency-practice/simple-channel
+	./rest-template
 )
