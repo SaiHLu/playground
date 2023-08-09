@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"rest-template/common/config"
 	"rest-template/database"
+	"rest-template/user/repositories"
 	"rest-template/user/services"
 
 	jwtware "github.com/gofiber/contrib/jwt"
@@ -25,7 +26,7 @@ func jwtSuccess(c *fiber.Ctx) error {
 	token := c.Locals("user").(*jwt.Token)
 	userId := token.Claims.(jwt.MapClaims)["id"]
 
-	userRepository := services.NewUserRepository(database.DB)
+	userRepository := repositories.NewUserRepository(database.DB)
 	userService := services.NewUserService(userRepository)
 
 	user, err := userService.FindOne(fmt.Sprintf("%s", userId))

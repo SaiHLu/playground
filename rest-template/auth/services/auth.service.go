@@ -1,16 +1,19 @@
 package services
 
-import "rest-template/auth/dto"
+import (
+	"rest-template/auth/dto"
+	"rest-template/auth/repositories"
+)
 
 type Service interface {
 	Login(dto.LoginDto) (*dto.Auth, error)
 }
 
 type service struct {
-	repository AuthRepository
+	repository repositories.AuthRepository
 }
 
-func NewAuthService(r AuthRepository) Service {
+func NewAuthService(r repositories.AuthRepository) Service {
 	return &service{
 		repository: r,
 	}

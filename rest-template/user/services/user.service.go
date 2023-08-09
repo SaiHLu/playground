@@ -3,6 +3,7 @@ package services
 import (
 	"rest-template/user/dto"
 	"rest-template/user/models"
+	"rest-template/user/repositories"
 )
 
 type Service interface {
@@ -14,10 +15,10 @@ type Service interface {
 }
 
 type service struct {
-	repository UserRepository
+	repository repositories.UserRepository
 }
 
-func NewUserService(r UserRepository) Service {
+func NewUserService(r repositories.UserRepository) Service {
 	return &service{
 		repository: r,
 	}

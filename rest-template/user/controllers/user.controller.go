@@ -1,8 +1,9 @@
-package user
+package controllers
 
 import (
 	"fmt"
 	"rest-template/user/dto"
+	"rest-template/user/models"
 	"rest-template/user/services"
 	"strings"
 
@@ -34,7 +35,8 @@ func Find(service services.Service) fiber.Handler {
 	return func(c *fiber.Ctx) error {
 		result, err := service.Find()
 
-		fmt.Println("User: ", c.Locals("authUser"))
+		user := c.Locals("authUser").(*models.User)
+		fmt.Println("User: ", user.Email)
 
 		if err != nil {
 			return c.JSON(dto.UserErrorResponse(err))
