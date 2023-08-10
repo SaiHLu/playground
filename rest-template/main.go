@@ -4,6 +4,7 @@ import (
 	"rest-template/auth"
 	"rest-template/database"
 	"rest-template/user"
+	"rest-template/ws"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
@@ -29,6 +30,7 @@ func main() {
 
 	user.UsersRoute(app)
 	auth.AuthRoute(app)
+	ws.WsRoute(app)
 
 	app.Listen(":8080")
 }

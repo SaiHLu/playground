@@ -3,6 +3,9 @@ include .env
 run_mac:
 	~/go/bin/air
 
+run_windows:
+	air -c .air.toml.windows
+
 create_migration:
 	migrate create -ext sql -dir database/migrations $(tableName)
 
