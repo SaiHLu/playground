@@ -10,10 +10,14 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
+	"github.com/gofiber/template/html/v2"
 )
 
 func main() {
-	app := fiber.New()
+	engine := html.New("./public", ".html")
+	app := fiber.New(fiber.Config{
+		Views: engine,
+	})
 
 	app.Use(cors.New())
 	app.Use(recover.New())
@@ -26,6 +30,10 @@ func main() {
 			"success": true,
 			"message": "OK",
 		})
+	})
+
+	app.Get("/rooms/:roomId", func(c *fiber.Ctx) error {
+		return c.Render("index", nil)
 	})
 
 	user.UsersRoute(app)

@@ -33,7 +33,7 @@
 					const params = window.location.href.split("/");
 					const roomId = params[params.length - 1];
 					console.log("roomId: ", roomId);
-					conn = new WebSocket("ws://127.0.0.1/ws/" + roomId);
+					conn = new WebSocket("ws://127.0.0.1:8080/ws/" + roomId);
 					conn.onclose = function (evt) {
 						let item = document.createElement("div");
 						item.innerHTML = "<b>Connection closed.</b>";

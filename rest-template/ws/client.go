@@ -31,8 +31,6 @@ type subscription struct {
 	room string
 }
 
-var h = NewHub()
-
 func (c *connection) write(messageType int, data []byte) error {
 	c.ws.SetWriteDeadline(time.Now().Add(writeWait))
 	return c.ws.WriteMessage(messageType, data)

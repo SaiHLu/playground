@@ -8,21 +8,19 @@ import (
 )
 
 func WsRoute(app *fiber.App) fiber.Router {
-	// go h.Run()
-
 	api := app.Group("/ws", func(c *fiber.Ctx) error {
 		// IsWebSocketUpgrade returns true if the client
 		// requested upgrade to the WebSocket protocol.
 		if websocket.IsWebSocketUpgrade(c) {
+			c.Locals("allowed", true)
 			return c.Next()
 		}
-		return c.SendStatus(fiber.StatusUpgradeRequired)
+		log.Println("Upgrade weboskcet error")
+		return fiber.ErrUpgradeRequired
 	})
 
 	api.Get("/:roomId", websocket.New(func(c *websocket.Conn) {
-		log.Println("room: ", c.Params("roomId"))
-
-		app.Static("/", "./public")
+		log.Println("allowed: ", c.Locals("allowed"))
 
 		serveWs(c, c.Params("roomId"))
 	}))
