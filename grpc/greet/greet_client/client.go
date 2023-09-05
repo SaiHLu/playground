@@ -6,6 +6,7 @@ import (
 	"grpc/greet/greetpb"
 	"io"
 	"log"
+	"time"
 
 	"google.golang.org/grpc"
 )
@@ -24,6 +25,8 @@ func main() {
 	UnaryRequest(client)
 
 	ServerStreamingRequest(client)
+
+	ClientStreamingRequest(client)
 }
 
 func UnaryRequest(client greetpb.GreetServiceClient) {
@@ -67,4 +70,43 @@ func ServerStreamingRequest(client greetpb.GreetServiceClient) {
 
 		fmt.Println("Streaming...", msg.Result)
 	}
+}
+
+func ClientStreamingRequest(client greetpb.GreetServiceClient) {
+	stream, err := client.LongGreet(context.Background())
+
+	requests := []*greetpb.LongGreetRequest{
+		{
+			Greeting: &greetpb.Greeting{
+				FirstName: "One",
+			},
+		},
+		{
+			Greeting: &greetpb.Greeting{
+				FirstName: "Two",
+			},
+		},
+		{
+			Greeting: &greetpb.Greeting{
+				FirstName: "Three",
+			},
+		},
+	}
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for _, req := range requests {
+		fmt.Println("Sending request: ", req)
+		stream.Send(req)
+		time.Sleep(time.Millisecond * 100)
+	}
+
+	res, err := stream.CloseAndRecv()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println("Final Response: ", res.Result)
 }
