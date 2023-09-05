@@ -1,3 +1,5 @@
+go 1.21.0
+
 use ./modules
 
 use ./types
@@ -23,6 +25,7 @@ use ./concurrency-practice/mutex-balance
 use (
 	./concurrency-practice/dinning-philosophers
 	./concurrency-practice/simple-channel
+	./grpc
 	./rest-template
 	./url-checkers
 )
